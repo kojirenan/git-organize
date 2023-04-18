@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    background: #6278F7 url("../../../public/images/fundo.png") no-repeat center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.list {
+    width: 33vw;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 30px
+}
+
+.logo {
+    height: 63px;
+}
+
+.content {
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+}

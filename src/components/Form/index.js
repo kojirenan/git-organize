@@ -4,17 +4,7 @@ import SelectList from '../SelectList';
 import Button from '../Button';
 import { useState } from 'react';
 
-const Form = () => {
-    const teams = [
-        "Programação",
-        "Front-End",
-        "Data Science",
-        "Dev-Ops",
-        "UX e UI",
-        "Mobile",
-        "Inovação e Gestão"
-    ]
-
+const Form = (props) => {
     const [name, setName] = useState("");
     const [office, setOffice] = useState("");
     const [image, setImage] = useState("");
@@ -22,7 +12,12 @@ const Form = () => {
 
     const saveForm = (e) => {
         e.preventDefault()
-        console.log("Form submit => ", name, office, image,  team)
+        props.onRegisteredEmployee({
+            name,
+            office,
+            image: `https://github.com/${image}.png`,
+            team
+        })
     }
 
     return(
@@ -31,8 +26,8 @@ const Form = () => {
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
                 <InputText binding={true} label="Nome" placeholder="Digite seu nome" value={name} onChange={value => setName(value)}/>
                 <InputText binding={true} label="Cargo" placeholder="Digite seu cargo" value={office} onChange={value => setOffice(value)}/>
-                <InputText label="Imagem" placeholder="Informe o endereço da imagem" value={image} onChange={value => setImage(value)}/>
-                <SelectList binding={true} label="Time" items={teams} value={team} onChange={value => setTeam(value)}/>
+                <InputText label="Imagem - (Github username)" placeholder="Informe o endereço da imagem" value={image} onChange={value => setImage(value)}/>
+                <SelectList binding={true} label="Time" items={props.teams} value={team} onChange={value => setTeam(value)}/>
                 <Button>
                     Criar Card
                 </Button>
