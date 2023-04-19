@@ -11,13 +11,17 @@ const Form = (props) => {
     const [team, setTeam] = useState("");
 
     const saveForm = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         props.onRegisteredEmployee({
             name,
             office,
             image: `https://github.com/${image}.png`,
             team
-        })
+        });
+        setName("");
+        setOffice("");
+        setImage("");
+        setTeam("");
     }
 
     return(
