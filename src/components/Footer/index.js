@@ -12,7 +12,7 @@ const Footer = () => {
                 <img src="/images/logo.png" alt="logo" />
              </div>
              <div className='content'>
-                <p>© 2023 All Rights Reserved</p>
+                <p> 2023 - Renan Koji Hanashiro</p>
              </div>
         </footer>
     )
