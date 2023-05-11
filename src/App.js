@@ -3,6 +3,7 @@ import Form from "./components/Form";
 import { useState } from "react";
 import Team from "./components/Team";
 import Footer from "./components/Footer";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const teams = [
@@ -45,30 +46,35 @@ function App() {
 
   const acessUsers = [
     {
+      id: uuidv4(),
       name: "Renan Koji",
       office: "Dev-Júnior",
       image: "https://github.com/kojirenan.png",
-      team: teams[6].name,
+      team: teams[0].name,
     },
     {
+      id: uuidv4(),
       name: "Diego Fernandes",
       office: "CTO",
       image: "https://github.com/diego3g.png",
       team: teams[6].name,
     },
     {
+      id: uuidv4(),
       name: "Mayk Brito",
       office: "Professor",
       image: "https://github.com/maykbrito.png",
       team: teams[0].name,
     },
     {
+      id: uuidv4(),
       name: "Karina Candido",
       office: "Dev-Júnior",
       image: "https://github.com/karinapcandido.png",
       team: teams[1].name,
     },
     {
+      id: uuidv4(),
       name: "Paulo Silveira",
       office: "CEO",
       image: "https://github.com/peas.png",
@@ -76,10 +82,14 @@ function App() {
     },
   ];
 
-  const [users, setusers] = useState([...acessUsers]);
+  const [users, setUsers] = useState([...acessUsers]);
   const onAddNewuser = (user) => {
-    setusers([...users, user]);
+    setUsers([...users, user]);
   };
+
+  function deleteUser(id) {
+    setUsers(users.filter((user) => user.id !== id));
+  }
 
   return (
     <div className="App">
@@ -95,6 +105,7 @@ function App() {
           primaryColor={team.primaryColor}
           secundaryColor={team.secundaryColor}
           users={users.filter((user) => user.team === team.name)}
+          onDelete={deleteUser}
         />
       ))}
       <Footer />

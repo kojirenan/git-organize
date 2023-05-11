@@ -12,10 +12,12 @@ const Team = (props) => {
         <div className="members">
           {props.users.map((user) => (
             <Card
-              key={user.name}
+              id={user.id}
+              key={user.id}
               name={user.name}
               image={user.image}
               office={user.office}
+              onDelete={props.onDelete}
             />
           ))}
         </div>

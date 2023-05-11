@@ -3,6 +3,7 @@ import InputText from "../InputText";
 import SelectList from "../SelectList";
 import Button from "../Button";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const Form = (props) => {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ const Form = (props) => {
   const saveForm = (e) => {
     e.preventDefault();
     props.onRegistereduser({
+      id: uuidv4(),
       name,
       office,
       image: `https://github.com/${image}.png`,
