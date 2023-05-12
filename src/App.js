@@ -38,34 +38,6 @@ function App() {
       image: "https://github.com/kojirenan.png",
       team: teams[0].name,
     },
-    {
-      id: uuidv4(),
-      name: "Diego Fernandes",
-      office: "CTO",
-      image: "https://github.com/diego3g.png",
-      team: teams[2].name,
-    },
-    {
-      id: uuidv4(),
-      name: "Mayk Brito",
-      office: "Professor",
-      image: "https://github.com/maykbrito.png",
-      team: teams[2].name,
-    },
-    {
-      id: uuidv4(),
-      name: "Karina Candido",
-      office: "Dev-Júnior",
-      image: "https://github.com/karinapcandido.png",
-      team: teams[0].name,
-    },
-    {
-      id: uuidv4(),
-      name: "Paulo Silveira",
-      office: "CEO",
-      image: "https://github.com/peas.png",
-      team: teams[2].name,
-    },
   ];
 
   const [users, setUsers] = useState([...acessUsers]);
