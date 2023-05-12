@@ -1,10 +1,14 @@
 .card {
   position: relative;
   width: 262px;
-  background-image: linear-gradient(180deg, #444444 33%, #fff 30%);
+  background: linear-gradient(
+    180deg,
+    rgba(18, 19, 22, 1) 33%,
+    rgba(68, 70, 77, 1) 33%
+  );
   padding: 40px 0 28px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 30px -10px;
 }
 
 .delete {
@@ -20,6 +24,7 @@
 }
 
 .card img {
+  border: 2px solid white;
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -27,14 +32,23 @@
 }
 
 .info h4 {
-  color: rgba(98, 120, 247, 1);
-  font-weight: 600;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 22px;
+  font-weight: 600;
+  line-height: 40px;
+  background: linear-gradient(
+    90deg,
+    rgba(216, 216, 216, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(216, 216, 216, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .info p {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 18px;
+  color: white;
+  line-height: 40px;
   font-weight: 400;
 }

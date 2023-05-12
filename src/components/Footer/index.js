@@ -1,21 +1,37 @@
-import './Footer.css';
+import "./Footer.css";
+import { FaGithubSquare } from "react-icons/fa";
 
 const Footer = () => {
-    return (
-        <footer className="footer">
-             <ul className='list'>
-                <li><a href="#"><img src="/images/fb.png" alt="facebook" /></a></li>
-                <li><a href="#"><img src="/images/tw.png" alt="twitter" /></a></li>
-                <li><a href="#"><img src="/images/ig.png" alt="instagram" /></a></li>
-             </ul>
-             <div className='logo'>
-                <img src="/images/logo.png" alt="logo" />
-             </div>
-             <div className='content'>
-                <p> 2023 - Renan Koji Hanashiro</p>
-             </div>
-        </footer>
-    )
-}
+  return (
+    <footer className="footer">
+      <ul className="list">
+        <li>
+          <a href="#"></a>
+        </li>
+        <li>
+          <a href="#"></a>
+        </li>
+        <li>
+          <a href="#"></a>
+        </li>
+      </ul>
+      <div className="logo">
+        <img src="/images/logo.png" alt="logo" />
+      </div>
+      <div className="link-git">
+        <div className="content">
+          <a
+            href="https://github.com/kojirenan"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p>Renan Koji Hanashiro</p>
+          </a>
+        </div>
+        <FaGithubSquare size={42} color="rgba(244, 19, 100, 1)" />
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

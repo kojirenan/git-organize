@@ -57,7 +57,7 @@ const Form = (props) => {
           value={team}
           onChange={(value) => setTeam(value)}
         />
-        <Button>Criar Card</Button>
+        <Button>Adicionar Usuário</Button>
       </form>
     </section>
   );

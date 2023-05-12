@@ -1,50 +1,36 @@
 import Banner from "./components/Banner";
 import Form from "./components/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Team from "./components/Team";
 import Footer from "./components/Footer";
 import { v4 as uuidv4 } from "uuid";
+import hexToRgba from "hex-to-rgba";
 
 function App() {
   const teams = [
     {
-      name: "Programação",
-      primaryColor: "#57C278",
-      secundaryColor: "#D9F7E9",
-    },
-    {
       name: "Front-end",
-      primaryColor: "#82CFFA",
-      secundaryColor: "#E8F8FF",
+      color: "#020659",
     },
     {
-      name: "Data-Science",
-      primaryColor: "#A6D157",
-      secundaryColor: "#F0F8E2",
+      name: "Back-End",
+      color: "#8C144C",
     },
     {
-      name: "Dev-Ops",
-      primaryColor: "#E06B69",
-      secundaryColor: "#FDE7E8",
-    },
-    {
-      name: "UX e UI",
-      primaryColor: "#DB6EBF",
-      secundaryColor: "#FAE9F5",
+      name: "FullStack",
+      color: "#725EF2",
     },
     {
       name: "Mobile",
-      primaryColor: "#FFBA05",
-      secundaryColor: "#FFF5D9",
+      color: "#F2E205",
     },
     {
-      name: "Inovação e Gestão",
-      primaryColor: "#FF8A29",
-      secundaryColor: "#FFEEDF",
+      name: "DataScience",
+      color: "#595959",
     },
   ];
 
-  const acessUsers = [
+  const acessUsers = JSON.parse(localStorage.getItem("@organo-users")) || [
     {
       id: uuidv4(),
       name: "Renan Koji",
@@ -57,28 +43,28 @@ function App() {
       name: "Diego Fernandes",
       office: "CTO",
       image: "https://github.com/diego3g.png",
-      team: teams[6].name,
+      team: teams[2].name,
     },
     {
       id: uuidv4(),
       name: "Mayk Brito",
       office: "Professor",
       image: "https://github.com/maykbrito.png",
-      team: teams[0].name,
+      team: teams[2].name,
     },
     {
       id: uuidv4(),
       name: "Karina Candido",
       office: "Dev-Júnior",
       image: "https://github.com/karinapcandido.png",
-      team: teams[1].name,
+      team: teams[0].name,
     },
     {
       id: uuidv4(),
       name: "Paulo Silveira",
       office: "CEO",
       image: "https://github.com/peas.png",
-      team: teams[6].name,
+      team: teams[2].name,
     },
   ];
 
@@ -86,6 +72,10 @@ function App() {
   const onAddNewuser = (user) => {
     setUsers([...users, user]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("@organo-users", JSON.stringify(users));
+  }, [users]);
 
   function deleteUser(id) {
     setUsers(users.filter((user) => user.id !== id));
@@ -102,8 +92,8 @@ function App() {
         <Team
           key={team.name}
           teamName={team.name}
-          primaryColor={team.primaryColor}
-          secundaryColor={team.secundaryColor}
+          color={team.color}
+          secundaryColor={hexToRgba(team.color, 0.5)}
           users={users.filter((user) => user.team === team.name)}
           onDelete={deleteUser}
         />

@@ -5,11 +5,19 @@
 
 .team h3 {
   display: inline-block;
-  font-size: 32px;
+  font-size: 56px;
   line-height: 40px;
   border-bottom: 4px solid;
   padding-bottom: 8px;
   margin-bottom: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(216, 216, 216, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(216, 216, 216, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .team .members {

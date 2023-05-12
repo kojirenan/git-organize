@@ -8,7 +8,7 @@ const Team = (props) => {
         className="team"
         style={{ backgroundColor: props.secundaryColor }}
       >
-        <h3 style={{ borderColor: props.primaryColor }}>{props.teamName}</h3>
+        <h3 style={{ borderColor: props.color }}>{props.teamName}</h3>
         <div className="members">
           {props.users.map((user) => (
             <Card

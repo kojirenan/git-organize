@@ -9,10 +9,11 @@
 }
 
 .input-text input {
-  background-color: #fff;
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.06);
+  background-color: rgba(52, 53, 56, 1);
+  border-radius: 5px;
+  border: 1px solid rgba(200, 200, 200, 0.3);
   width: 100%;
-  border: none;
   font-size: 20px;
   padding: 20px;
+  color: white;
 }
