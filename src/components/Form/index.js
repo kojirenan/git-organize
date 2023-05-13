@@ -4,60 +4,81 @@ import SelectList from "../SelectList";
 import Button from "../Button";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import UseUserSearch from "../../hooks/useUserSearch";
 
 const Form = (props) => {
-  const [name, setName] = useState("");
+  const [user, setUser] = useState("");
   const [office, setOffice] = useState("");
-  const [image, setImage] = useState("");
   const [team, setTeam] = useState("");
+  const [visible, setVisible] = useState("notVisible");
 
-  const saveForm = (e) => {
+  const saveForm = async (e) => {
     e.preventDefault();
-    props.onRegistereduser({
-      id: uuidv4(),
-      name,
-      office,
-      image: `https://github.com/${image}.png`,
-      team,
-    });
-    setName("");
+    const {
+      name = 0,
+      login,
+      public_repos,
+      followers,
+    } = await UseUserSearch(user);
+
+    if (name !== 0) {
+      props.onRegistereduser({
+        id: uuidv4(),
+        name,
+        login,
+        office,
+        public_repos,
+        followers,
+        image: `https://github.com/${user}.png`,
+        team,
+      });
+
+      setVisible("isNotVisible");
+    } else {
+      setVisible("isVisible");
+    }
+
+    setUser("");
     setOffice("");
-    setImage("");
     setTeam("");
   };
 
   return (
     <section className="form">
       <form onSubmit={saveForm}>
-        <h2>Preencha os dados para criar o card do colaborador.</h2>
+        <h2>Preencha os dados para criar o card do usuário.</h2>
         <InputText
-          binding={true}
-          label="Nome"
-          placeholder="Digite seu nome"
-          value={name}
-          onChange={(value) => setName(value)}
+          required={true}
+          label="GitHub username"
+          placeholder="Digite o username do GitHub"
+          value={user}
+          onChange={(value) => setUser(value)}
         />
         <InputText
-          binding={true}
+          required={true}
           label="Cargo"
-          placeholder="Digite seu cargo"
+          placeholder="Digite o cargo"
           value={office}
           onChange={(value) => setOffice(value)}
         />
-        <InputText
-          label="Imagem - (Github username)"
-          placeholder="Informe o endereço da imagem"
-          value={image}
-          onChange={(value) => setImage(value)}
-        />
         <SelectList
-          binding={true}
+          required={true}
           label="Time"
           items={props.teams}
           value={team}
           onChange={(value) => setTeam(value)}
         />
-        <Button>Adicionar Usuário</Button>
+        <div className="form-footer">
+          <Button>Adicionar Usuário</Button>
+          {visible === "isVisible" ? (
+            <div className="notification">
+              <p>Usuário não encontrado!</p>
+              <p>Digite um username válido!</p>
+            </div>
+          ) : (
+            <p></p>
+          )}
+        </div>
       </form>
     </section>
   );

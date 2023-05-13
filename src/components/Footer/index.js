@@ -4,17 +4,6 @@ import { FaGithubSquare } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="footer">
-      <ul className="list">
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-        <li>
-          <a href="#"></a>
-        </li>
-      </ul>
       <div className="logo">
         <img src="/images/logo.png" alt="logo" />
       </div>

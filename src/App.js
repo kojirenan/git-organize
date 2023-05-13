@@ -10,23 +10,23 @@ function App() {
   const teams = [
     {
       name: "Front-end",
-      color: "#020659",
+      color: "#8c144c",
     },
     {
       name: "Back-End",
-      color: "#8C144C",
+      color: "#862776",
     },
     {
       name: "FullStack",
-      color: "#725EF2",
+      color: "#7f399f",
     },
     {
       name: "Mobile",
-      color: "#F2E205",
+      color: "#794cc8",
     },
     {
       name: "DataScience",
-      color: "#595959",
+      color: "#725ef2",
     },
   ];
 
@@ -34,7 +34,10 @@ function App() {
     {
       id: uuidv4(),
       name: "Renan Koji",
+      login: "kojirenan",
       office: "Dev-Júnior",
+      public_repos: 19,
+      followers: 0,
       image: "https://github.com/kojirenan.png",
       team: teams[0].name,
     },
@@ -59,6 +62,7 @@ function App() {
       <Form
         teams={teams.map((team) => team.name)}
         onRegistereduser={(user) => onAddNewuser(user)}
+        user={users.name}
       />
       {teams.map((team) => (
         <Team

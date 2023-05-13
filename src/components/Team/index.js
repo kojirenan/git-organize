@@ -15,7 +15,10 @@ const Team = (props) => {
               id={user.id}
               key={user.id}
               name={user.name}
+              login={user.login}
               image={user.image}
+              repositories={user.public_repos}
+              followers={user.followers}
               office={user.office}
               onDelete={props.onDelete}
             />
