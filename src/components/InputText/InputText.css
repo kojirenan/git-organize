@@ -1,11 +1,11 @@
 .input-text {
-  margin: 16px 0;
+  margin: 0.8rem 0;
 }
 
 .input-text label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 20px;
+  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
 }
 
 .input-text input {
@@ -13,7 +13,23 @@
   border-radius: 5px;
   border: 1px solid rgba(200, 200, 200, 0.3);
   width: 100%;
-  font-size: 20px;
-  padding: 20px;
+  font-size: 1.6rem;
+  padding: 0.8rem;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .input-text {
+    margin: 1.6rem 0;
+  }
+
+  .input-text label {
+    margin-bottom: 0.8rem;
+    font-size: 2rem;
+  }
+
+  .input-text input {
+    font-size: 2rem;
+    padding: 2rem;
+  }
 }

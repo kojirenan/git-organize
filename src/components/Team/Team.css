@@ -1,15 +1,15 @@
 .team {
   text-align: center;
-  padding: 34px 0 40px;
+  padding: 2rem 0 40px;
 }
 
 .team h3 {
   display: inline-block;
-  font-size: 56px;
-  line-height: 40px;
+  font-size: 3.2rem;
+  line-height: 4rem;
   border-bottom: 4px solid;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
+  padding-bottom: 0.2rem;
+  margin-bottom: 2rem;
   background: linear-gradient(
     90deg,
     rgba(216, 216, 216, 1) 0%,
@@ -23,6 +23,27 @@
 .team .members {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 2.4rem;
   flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .team {
+    text-align: center;
+    padding: 34px 0 40px;
+  }
+
+  .team h3 {
+    display: inline-block;
+    font-size: 5.6rem;
+    padding-bottom: 8px;
+    margin-bottom: 1.6rem;
+  }
+
+  .team .members {
+    display: flex;
+    justify-content: center;
+    gap: 2.8rem;
+    flex-wrap: wrap;
+  }
 }

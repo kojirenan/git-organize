@@ -2,19 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding: 2rem 2.4rem;
 }
 
-.list {
-  width: 33vw;
-  display: flex;
-  list-style: none;
-  justify-content: center;
-  gap: 30px;
-}
-
-.logo {
-  height: 63px;
+.logo img {
+  height: 3.6rem;
 }
 
 .link-git {
@@ -34,8 +26,23 @@
   background-color: rgba(52, 53, 56, 1);
   border-radius: 5px;
   border: 1px solid rgba(200, 200, 200, 0.3);
-  padding: 8px;
+  padding: 0.8rem;
   color: white;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 2.4rem;
+  align-self: center;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 3rem;
+  }
+
+  .logo img {
+    height: 6rem;
+  }
+
+  .content {
+    padding: 0.8rem;
+    font-size: 3rem;
+  }
 }
