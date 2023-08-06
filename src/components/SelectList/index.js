@@ -1,17 +1,13 @@
-import "./SelectList.css";
+import './SelectList.css';
 
-const SelectList = (props) => {
+const SelectList = ({ required, label, teams, value, onChange }) => {
   return (
     <div className="select-list">
-      <label>{props.label}</label>
-      <select
-        required={props.required}
-        value={props.value}
-        onChange={(event) => props.onChange(event.target.value)}
-      >
+      <label>{label}</label>
+      <select required={required} value={value} onChange={event => onChange(event.target.value)}>
         <option value=""></option>
-        {props.items.map((item) => (
-          <option key={item}>{item}</option>
+        {teams.map(team => (
+          <option key={team.id}>{team.name}</option>
         ))}
       </select>
     </div>

@@ -1,13 +1,22 @@
-async function UseUserSearch(user) {
-  const response = await fetch(`https://api.github.com/users/${user}`);
-  const userData = await response.json();
-  const { login, name, public_repos, followers } = await userData;
-  return {
-    login,
-    name,
-    public_repos,
-    followers,
-  };
-}
+import { v4 as uuidv4 } from 'uuid';
 
-export default UseUserSearch;
+const useUserSearch = () => {
+  return async user => {
+    const response = await fetch(`https://api.github.com/users/${user}`);
+    const userData = await response.json();
+    const { login, name = 0, public_repos, followers, avatar_url } = await userData;
+    if (name !== 0) {
+      return {
+        login,
+        id: uuidv4(),
+        name,
+        public_repos,
+        followers,
+        avatar_url,
+      };
+    }
+    return name;
+  };
+};
+
+export default useUserSearch;

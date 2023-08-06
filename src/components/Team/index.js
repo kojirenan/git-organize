@@ -1,27 +1,17 @@
-import Card from "../Card";
-import "./Team.css";
+import Card from '../Card';
+import './Team.css';
+import useUserList from '../../hooks/useUserList';
 
-const Team = (props) => {
+const Team = ({ teamName, color, secundaryColor }) => {
+  const users = useUserList();
+  const usersTeam = users.filter(user => user.team === teamName);
   return (
-    props.users.length > 0 && (
-      <section
-        className="team"
-        style={{ backgroundColor: props.secundaryColor }}
-      >
-        <h3 style={{ borderColor: props.color }}>{props.teamName}</h3>
+    usersTeam.length > 0 && (
+      <section className="team" style={{ backgroundColor: secundaryColor }}>
+        <h3 style={{ borderColor: color }}>{teamName}</h3>
         <div className="members">
-          {props.users.map((user) => (
-            <Card
-              id={user.id}
-              key={user.id}
-              name={user.name}
-              login={user.login}
-              image={user.image}
-              repositories={user.public_repos}
-              followers={user.followers}
-              office={user.office}
-              onDelete={props.onDelete}
-            />
+          {users.map(user => (
+            <Card key={user.id} {...user} />
           ))}
         </div>
       </section>
