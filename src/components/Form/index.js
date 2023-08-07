@@ -1,11 +1,11 @@
 import './Form.css';
-import InputText from '../InputText';
-import SelectList from '../SelectList';
-import Button from '../Button';
+import InputText from 'components/InputText';
+import SelectList from 'components/SelectList';
+import Button from 'components/Button';
 import { useState } from 'react';
-import useTeamList from '../../hooks/useTeamList';
-import useUserSearch from '../../hooks/useUserSearch';
-import useAddUserToList from '../../hooks/useAddUserToList';
+import useTeamList from 'hooks/useTeamList';
+import useUserSearch from 'hooks/useUserSearch';
+import useAddUserToList from 'hooks/useAddUserToList';
 
 const Form = () => {
   const [user, setUser] = useState('');
@@ -36,7 +36,13 @@ const Form = () => {
     <section className="form">
       <form onSubmit={saveForm}>
         <h2>Preencha os dados para criar o card do usuário.</h2>
-        <InputText required={true} label="GitHub username" placeholder="Digite o username do GitHub" value={user} onChange={value => setUser(value)} />
+        <InputText
+          required={true}
+          label="GitHub username"
+          placeholder="Digite o username do GitHub"
+          value={user}
+          onChange={value => setUser(value)}
+        />
         <InputText required={true} label="Cargo" placeholder="Digite o cargo" value={office} onChange={value => setOffice(value)} />
         <SelectList required={true} label="Time" teams={teams} value={team} onChange={value => setTeam(value)} />
         <div className="form-footer">

@@ -5,12 +5,6 @@ import Footer from './components/Footer';
 import useTeamList from './hooks/useTeamList';
 
 function App() {
-  // const users = useRecoilValue(listUsers);
-  // const acessUsers = JSON.parse(localStorage.getItem('@organo-users')) || users;
-
-  // useEffect(() => {
-  //   localStorage.setItem('@organo-users', JSON.stringify(users));
-  // }, [users]);
   const teams = useTeamList();
 
   return (

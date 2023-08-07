@@ -1,5 +1,5 @@
 import { useSetRecoilState } from 'recoil';
-import { listUsers } from '../utils/atom';
+import { listUsers } from 'utils/atom';
 
 const useAddUserToList = () => {
   const setAddUserList = useSetRecoilState(listUsers);

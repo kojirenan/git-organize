@@ -1,7 +1,7 @@
 import './Card.css';
 import { TbCircleX } from 'react-icons/tb';
 import { FaGithubSquare } from 'react-icons/fa';
-import useDeleteUserToList from '../../hooks/useDeleteUserToList';
+import useDeleteUserToList from 'hooks/useDeleteUserToList';
 
 const Card = ({ id, name, avatar_url, login, office, followers, public_repos }) => {
   const deleteUser = useDeleteUserToList();

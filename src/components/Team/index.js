@@ -1,6 +1,6 @@
-import Card from '../Card';
+import Card from 'components/Card';
 import './Team.css';
-import useUserList from '../../hooks/useUserList';
+import useUserList from 'hooks/useUserList';
 
 const Team = ({ teamName, color, secundaryColor }) => {
   const users = useUserList();
