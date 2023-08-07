@@ -10,7 +10,7 @@ const Team = ({ teamName, color, secundaryColor }) => {
       <section className="team" style={{ backgroundColor: secundaryColor }}>
         <h3 style={{ borderColor: color }}>{teamName}</h3>
         <div className="members">
-          {users.map(user => (
+          {usersTeam.map(user => (
             <Card key={user.id} {...user} />
           ))}
         </div>
