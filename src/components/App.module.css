@@ -9,8 +9,9 @@
 
 .btnMenu {
   position: fixed;
-  right: 24px;
-  bottom: 76px;
+  left: 24px;
+  top: 0rem;
+  z-index: 3;
 }
 
 .teams > :first-of-type {

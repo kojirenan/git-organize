@@ -9,6 +9,7 @@ import useHasUserInTheTeam from 'hooks/useHasUserInTheTeam';
 import useDeleteTeamToList from 'hooks/useDeleteTeamToList';
 import useCreateTeam from 'hooks/useCreateTeam';
 import Button from 'components/Button';
+import { toast } from 'react-toastify';
 
 const FormTeam = ({ toggleForm }) => {
   const [newTeam, setNewTeam] = useState('');
@@ -27,21 +28,22 @@ const FormTeam = ({ toggleForm }) => {
 
     if (whatBtn === 'newTeam') {
       if (newTeam === '') {
-        alert('É necessário escolher um time para adicionar');
+        toast.error('É necessário escolher um time para adicionar.');
         return;
       }
       const hasRepeatedTeam = teams.find(el => el.name === newTeam);
       const aNewTeam = createATeam(newTeam);
 
       if (hasRepeatedTeam) {
-        alert('O time já existe! Escolha um time com outro nome');
+        toast.info('O time já existe! Escolha um time com outro nome.');
       } else {
+        toast.info('Novo time adicionado com sucesso.');
         addNewTeam(aNewTeam);
       }
       setNewTeam('');
     } else {
       if (deleteTeam === '') {
-        alert('É necessário escolher um time para excluir');
+        toast.error('É necessário escolher um time para excluir.');
         return;
       }
       const teamToDelete = teams.find(el => el.name === deleteTeam);
@@ -49,8 +51,9 @@ const FormTeam = ({ toggleForm }) => {
       if (!teamToDelete) {
         return;
       } else if (hasUserInTheTeam) {
-        alert('Não é possível excluir times com usuários. Exclua todos usuários antes de excluir um time');
+        toast.error('Não é possível excluir times com usuários! Exclua todos usuários antes de excluir um time.');
       } else {
+        toast.info('Time excluído com sucesso.');
         deleteTeamToList(teamToDelete.id);
         setDeleteTeam('');
       }

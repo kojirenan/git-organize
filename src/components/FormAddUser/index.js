@@ -8,6 +8,7 @@ import useAddUserToList from 'hooks/useAddUserToList';
 import AddButton from 'components/AddButton';
 import { AiOutlineTeam } from 'react-icons/ai';
 import useUserList from 'hooks/useUserList';
+import { toast } from 'react-toastify';
 
 const FormAddUser = ({ toggleForm }) => {
   const [user, setUser] = useState('');
@@ -21,18 +22,19 @@ const FormAddUser = ({ toggleForm }) => {
 
   const saveForm = async e => {
     e.preventDefault();
-    const newUser = await userSearch(user);
     const hasRepeatedUser = users.find(username => username.login === user);
-
     if (hasRepeatedUser) {
-      alert('Usuário já cadastrado');
+      toast.error('Usuário já cadastrado!');
       return;
     }
 
+    const newUser = await userSearch(user);
+
     if (newUser !== 0) {
       addUser(newUser, team, office);
+      toast.success('Usuário cadastrado com sucesso!');
     } else {
-      alert('Usuário não encontrado! Digite um username válido!');
+      toast.error('Usuário não encontrado! Digite um username válido.');
     }
 
     setUser('');
