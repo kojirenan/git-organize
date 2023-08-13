@@ -37,7 +37,7 @@
   .teams {
     grid-area: teams;
     overflow-y: auto;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(52, 53, 56, 1);
   }
 
