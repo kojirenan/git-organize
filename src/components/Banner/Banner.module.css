@@ -41,8 +41,7 @@
 @media (min-width: 992px) {
   .banner {
     flex-direction: row;
-    margin-bottom: 2rem;
-    padding: 0.8rem;
+    margin: 2rem 0;
     border-bottom: none;
     gap: 1.6rem;
   }

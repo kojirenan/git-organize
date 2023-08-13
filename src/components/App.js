@@ -18,15 +18,16 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-
-      if (windowWidth <= 767 && !hasUsers) {
-        setRenderForm(true);
-      } else if (windowWidth <= 767 && hasUsers) {
-        setRenderForm(false);
-      } else {
-        setRenderForm(true);
-      }
     };
+
+    if (!hasUsers) {
+      setRenderForm(true);
+    } else if (windowWidth <= 767 && hasUsers) {
+      setRenderForm(false);
+    } else {
+      setRenderForm(true);
+    }
+
     window.addEventListener('resize', handleResize);
 
     return () => {

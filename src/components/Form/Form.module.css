@@ -28,6 +28,10 @@
     position: static;
   }
 
+  .form form {
+    max-width: 60rem;
+  }
+
   .form div {
     margin: 16px 0;
   }
@@ -40,6 +44,10 @@
     border-radius: 5px;
     border: 1px solid rgba(200, 200, 200, 0.3);
     height: 52rem;
+  }
+
+  .form form {
+    max-width: 80rem;
   }
 
   .form h2 {
