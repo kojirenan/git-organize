@@ -1,100 +1,78 @@
-import InputText from "../InputText";
-import SelectList from "../SelectList";
-import ButtonForm from "../ButtonForm";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import AddButton from "../AddButton";
-import { MdDelete, MdArrowBack } from "react-icons/md";
+import InputText from '../InputText';
+import SelectList from '../SelectList';
+import { useState } from 'react';
+import AddButton from '../AddButton';
+import { MdArrowBack } from 'react-icons/md';
+import useTeamList from 'hooks/useTeamList';
+import useAddTeamToList from 'hooks/useAddTeamToList';
+import useHasUserInTheTeam from 'hooks/useHasUserInTheTeam';
+import useDeleteTeamToList from 'hooks/useDeleteTeamToList';
+import useCreateTeam from 'hooks/useCreateTeam';
+import Button from 'components/Button';
 
-const FormAddTeam = ({ teams, onRegisteredTeam, onDelete, toggle, users }) => {
-  const [newTeam, setNewTeam] = useState("");
-  const [deleteTeam, setDeleteTeam] = useState("");
-  const [visibleAdd, setVisibleAdd] = useState("notVisible");
-  const [visibleDel, setVisibleDel] = useState("notVisible");
+const FormTeam = ({ toggleForm }) => {
+  const [newTeam, setNewTeam] = useState('');
+  const [deleteTeam, setDeleteTeam] = useState('');
+  const [whatBtn, setWhatBtn] = useState('');
 
-  const saveForm = async (e) => {
+  const createATeam = useCreateTeam();
+
+  const teams = useTeamList();
+  const addNewTeam = useAddTeamToList();
+  const hasUserInTheTeam = useHasUserInTheTeam(deleteTeam);
+  const deleteTeamToList = useDeleteTeamToList();
+
+  const saveForm = async e => {
     e.preventDefault();
-    const hasTeam = teams.find((el) => el.name === newTeam);
 
-    if (hasTeam) {
-      setVisibleAdd("isVisible");
+    if (whatBtn === 'newTeam') {
+      if (newTeam === '') {
+        alert('É necessário escolher um time para adicionar');
+        return;
+      }
+      const hasRepeatedTeam = teams.find(el => el.name === newTeam);
+      const aNewTeam = createATeam(newTeam);
+
+      if (hasRepeatedTeam) {
+        alert('O time já existe! Escolha um time com outro nome');
+      } else {
+        addNewTeam(aNewTeam);
+      }
+      setNewTeam('');
     } else {
-      onRegisteredTeam({
-        id: uuidv4(),
-        name: newTeam,
-        color: "#8c144c",
-      });
-      setVisibleAdd("notVisible");
-    }
-    setNewTeam("");
-  };
+      if (deleteTeam === '') {
+        alert('É necessário escolher um time para excluir');
+        return;
+      }
+      const teamToDelete = teams.find(el => el.name === deleteTeam);
 
-  const deleteTeamForm = (e) => {
-    e.preventDefault();
-    const teamToDelete = teams.find((el) => el.name === deleteTeam);
-    const hasUser = users.find((user) => user.team === deleteTeam);
-
-    if (!teamToDelete) {
-      return;
-    } else if (hasUser) {
-      setVisibleDel("isVisible");
-    } else {
-      onDelete(teamToDelete.id);
-      setDeleteTeam("");
+      if (!teamToDelete) {
+        return;
+      } else if (hasUserInTheTeam) {
+        alert('Não é possível excluir times com usuários. Exclua todos usuários antes de excluir um time');
+      } else {
+        deleteTeamToList(teamToDelete.id);
+        setDeleteTeam('');
+      }
     }
   };
 
   return (
-    <div>
-      <form onSubmit={saveForm}>
-        <h2>Adicione ou Exclua seus times.</h2>
-        <InputText
-          required={true}
-          label="Adicione um time"
-          placeholder="Digite o nome do seu novo time"
-          value={newTeam}
-          onChange={(value) => setNewTeam(value)}
-        />
-        <div className="form-footer">
-          <ButtonForm type={"submit"}>Adicionar Time</ButtonForm>
-          {visibleAdd === "isVisible" ? (
-            <div className="notification">
-              <p>O time já existe!</p>
-              <p>Escolha um time com outro nome</p>
-            </div>
-          ) : (
-            <p></p>
-          )}
-        </div>
-      </form>
-      <form onSubmit={deleteTeamForm}>
-        <SelectList
-          required={false}
-          label="Selecione um time para excluir"
-          teams={teams.map((team) => team.name)}
-          value={deleteTeam}
-          onChange={(value) => setDeleteTeam(value)}
-        />
-        <div className="form-footer">
-          <ButtonForm type={"submit"}>
-            <MdDelete size={20} />
-            Excluir time
-          </ButtonForm>
-          {visibleDel === "isVisible" ? (
-            <div className="notification">
-              <p>Não é possível excluir times com usuários</p>
-              <p>Exclua todos usuários antes de excluir um time</p>
-            </div>
-          ) : (
-            <p>Exclua todos usuários antes de excluir um time</p>
-          )}
-        </div>
-        <AddButton toggle={toggle}>
-          <MdArrowBack size={40} color="#fff" />
-        </AddButton>
-      </form>
-    </div>
+    <form onSubmit={saveForm}>
+      <h2>Adicione ou Exclua seus times.</h2>
+      <InputText label="Adicione um time" placeholder="Digite o nome do seu novo time" value={newTeam} onChange={setNewTeam} />
+      <div>
+        <Button onClickFn={() => setWhatBtn('newTeam')}>Adicionar Time</Button>
+      </div>
+      <SelectList label="Exclua um time" teams={teams} value={deleteTeam} onChange={setDeleteTeam} />
+      <div>
+        <Button onClickFn={() => setWhatBtn('deleteTeam')}>Excluir time</Button>
+      </div>
+      <AddButton toggle={toggleForm} message={'Voltar ao formulário para adicionar usuário'}>
+        <MdArrowBack size={20} color="#fff" />
+      </AddButton>
+    </form>
   );
 };
 
-export default FormAddTeam;
+export default FormTeam;

@@ -1,9 +1,9 @@
-import './Banner.css';
+import styles from './Banner.module.css';
 
 export default function Banner() {
   return (
-    <header className="banner">
-      <div className="header-content">
+    <header className={styles.banner}>
+      <div>
         <h1>Organo</h1>
         <h2>Organize sua equipe</h2>
       </div>

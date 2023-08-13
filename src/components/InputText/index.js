@@ -1,21 +1,14 @@
-import "./InputText.css";
+import styles from './InputText.module.css';
 
-const InputText = (props) => {
-  const newPlaceholder = `${props.placeholder}...`;
-
-  const onTyping = (event) => {
-    props.onChange(event.target.value);
+const InputText = ({ placeholder, onChange, label, value, required }) => {
+  const onTyping = event => {
+    onChange(event.target.value);
   };
 
   return (
-    <div className="input-text">
-      <label>{props.label}</label>
-      <input
-        value={props.value}
-        onChange={onTyping}
-        required={props.required}
-        placeholder={newPlaceholder}
-      />
+    <div className={styles['input-text']}>
+      <label>{label}</label>
+      <input value={value} onChange={onTyping} required={required} placeholder={placeholder} />
     </div>
   );
 };

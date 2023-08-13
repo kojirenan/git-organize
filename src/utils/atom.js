@@ -1,13 +1,16 @@
 import { atom } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 import hexToRgba from 'hex-to-rgba';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const listTeam = atom({
   key: 'listTeam',
   default: [
     {
       id: uuidv4(),
-      name: 'Front-end',
+      name: 'Front-End',
       color: '#8c144c',
       secundaryColor: hexToRgba('#8c144c', 0.5),
       visible: false,
@@ -41,6 +44,7 @@ export const listTeam = atom({
       visible: false,
     },
   ],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const listUsers = atom({
@@ -50,11 +54,12 @@ export const listUsers = atom({
       id: uuidv4(),
       name: 'Renan Koji',
       login: 'kojirenan',
-      public_repos: 19,
+      public_repos: 24,
       followers: 1,
       avatar_url: 'https://avatars.githubusercontent.com/u/112651032?v=4',
       office: 'Dev. Júnior',
-      team: 'Front-end',
+      team: 'Front-End',
     },
   ],
+  effects_UNSTABLE: [persistAtom],
 });

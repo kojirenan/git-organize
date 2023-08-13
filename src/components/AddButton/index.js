@@ -1,8 +1,9 @@
-import "./AddButton.css";
+import styles from './AddButton.module.css';
 
-function AddButton({ children, toggle }) {
+function AddButton({ children, toggle, message }) {
   return (
-    <button type="button" className="add-button" onClick={toggle}>
+    <button className={styles.addbtn} type="button" onClick={toggle}>
+      <span className={styles.tooltip}>{message}</span>
       {children}
     </button>
   );

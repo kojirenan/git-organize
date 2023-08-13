@@ -1,9 +1,11 @@
-import './Button.css';
+import styles from './Button.module.css';
 
-const Button = (props) => {
-    return (
-        <button className='button'>{props.children}</button>
-    )
-}
+const Button = ({ children, onClickFn }) => {
+  return (
+    <button className={styles.button} onClick={onClickFn}>
+      {children}
+    </button>
+  );
+};
 
 export default Button;

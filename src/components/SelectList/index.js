@@ -1,8 +1,8 @@
-import './SelectList.css';
+import styles from './SelectList.module.css';
 
 const SelectList = ({ required, label, teams, value, onChange }) => {
   return (
-    <div className="select-list">
+    <div className={styles['select-list']}>
       <label>{label}</label>
       <select required={required} value={value} onChange={event => onChange(event.target.value)}>
         <option value=""></option>

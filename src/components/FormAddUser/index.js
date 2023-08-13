@@ -1,48 +1,45 @@
-import InputText from "../InputText";
-import SelectList from "../SelectList";
-import ButtonForm from "../ButtonForm";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import UseUserSearch from "../../hooks/useUserSearch";
-import AddButton from "../AddButton";
-import { TbSettings } from "react-icons/tb";
+import InputText from 'components/InputText';
+import SelectList from 'components/SelectList';
+import Button from 'components/Button';
+import { useState } from 'react';
+import useTeamList from 'hooks/useTeamList';
+import useUserSearch from 'hooks/useUserSearch';
+import useAddUserToList from 'hooks/useAddUserToList';
+import AddButton from 'components/AddButton';
+import { AiOutlineTeam } from 'react-icons/ai';
+import useUserList from 'hooks/useUserList';
 
-const FormAddUser = ({ teams, onRegistereduser, toggle }) => {
-  const [user, setUser] = useState("");
-  const [office, setOffice] = useState("");
-  const [team, setTeam] = useState("");
-  const [visible, setVisible] = useState("notVisible");
+const FormAddUser = ({ toggleForm }) => {
+  const [user, setUser] = useState('');
+  const [office, setOffice] = useState('');
+  const [team, setTeam] = useState('');
 
-  const saveForm = async (e) => {
+  const users = useUserList();
+  const userSearch = useUserSearch();
+  const addUser = useAddUserToList();
+  const teams = useTeamList();
+
+  const saveForm = async e => {
     e.preventDefault();
-    const {
-      name = 0,
-      login,
-      public_repos,
-      followers,
-    } = await UseUserSearch(user);
+    const newUser = await userSearch(user);
+    const hasRepeatedUser = users.find(username => username.login === user);
 
-    if (name !== 0) {
-      onRegistereduser({
-        id: uuidv4(),
-        name,
-        login,
-        office,
-        public_repos,
-        followers,
-        image: `https://github.com/${user}.png`,
-        team,
-      });
-
-      setVisible("isNotVisible");
-    } else {
-      setVisible("isVisible");
+    if (hasRepeatedUser) {
+      alert('Usuário já cadastrado');
+      return;
     }
 
-    setUser("");
-    setOffice("");
-    setTeam("");
+    if (newUser !== 0) {
+      addUser(newUser, team, office);
+    } else {
+      alert('Usuário não encontrado! Digite um username válido!');
+    }
+
+    setUser('');
+    setOffice('');
+    setTeam('');
   };
+
   return (
     <form onSubmit={saveForm}>
       <h2>Preencha os dados para criar o card do usuário.</h2>
@@ -51,35 +48,15 @@ const FormAddUser = ({ teams, onRegistereduser, toggle }) => {
         label="GitHub username"
         placeholder="Digite o username do GitHub"
         value={user}
-        onChange={(value) => setUser(value)}
+        onChange={value => setUser(value)}
       />
-      <InputText
-        required={true}
-        label="Cargo"
-        placeholder="Digite o cargo"
-        value={office}
-        onChange={(value) => setOffice(value)}
-      />
-      <SelectList
-        required={true}
-        label="Time"
-        teams={teams}
-        value={team}
-        onChange={(value) => setTeam(value)}
-      />
+      <InputText required={true} label="Cargo" placeholder="Digite o cargo" value={office} onChange={value => setOffice(value)} />
+      <SelectList required={true} label="Time" teams={teams} value={team} onChange={value => setTeam(value)} />
       <div className="form-footer">
-        <ButtonForm type={"submit"}>Adicionar Usuário</ButtonForm>
-        {visible === "isVisible" ? (
-          <div className="notification">
-            <p>Usuário não encontrado!</p>
-            <p>Digite um username válido!</p>
-          </div>
-        ) : (
-          <p></p>
-        )}
+        <Button>Adicionar Usuário</Button>
       </div>
-      <AddButton toggle={toggle}>
-        <TbSettings size={40} color="#fff" />
+      <AddButton toggle={toggleForm} message={'Adicione ou exclua seus times'}>
+        <AiOutlineTeam size={20} color="#fff" />
       </AddButton>
     </form>
   );

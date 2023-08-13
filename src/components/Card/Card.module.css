@@ -1,20 +1,16 @@
 .card {
   position: relative;
   width: 16rem;
-  background: linear-gradient(
-    180deg,
-    rgba(18, 19, 22, 1) 25%,
-    rgba(68, 70, 77, 1) 25%
-  );
-  padding: 4rem 0 2.4rem;
+  background: linear-gradient(180deg, rgba(18, 19, 22, 1) 25%, rgba(68, 70, 77, 1) 25%);
+  padding: 1.6rem 0 1rem;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 30px -10px;
 }
 
 .delete {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 0.5rem;
+  right: 0.5rem;
   cursor: pointer;
 }
 
@@ -34,13 +30,8 @@
 .info h4 {
   font-size: 1.6rem;
   font-weight: 600;
-  line-height: 3.6rem;
-  background: linear-gradient(
-    90deg,
-    rgba(216, 216, 216, 1) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(216, 216, 216, 1) 100%
-  );
+  line-height: 2.8rem;
+  background: linear-gradient(90deg, rgba(216, 216, 216, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(216, 216, 216, 1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   word-break: break-word;
@@ -59,8 +50,13 @@
   margin: 0.8rem auto;
 }
 
+.icon {
+  font-size: 28px;
+}
+
 .card-link a {
   color: white;
+  font-size: 1.2rem;
   text-decoration: none;
   background-color: rgba(52, 53, 56, 1);
   border-radius: 5px;
@@ -76,36 +72,34 @@
 .info p {
   font-size: 1.4rem;
   color: white;
-  line-height: 3.6rem;
+  line-height: 2.4rem;
   font-weight: 400;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .card {
-    width: 26rem;
-    padding: 4rem 0 2.8rem;
+    width: 20rem;
   }
 
   .card img {
-    width: 12rem;
-    height: 12rem;
+    width: 10rem;
+    height: 10rem;
   }
 
   .info h4 {
-    font-size: 2.4rem;
-    line-height: 4rem;
+    font-size: 1.8rem;
+    line-height: 3rem;
+  }
+
+  .icon {
+    font-size: 30px;
   }
 
   .info h5 {
-    font-size: 2rem;
-  }
-
-  .card-link a {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 
   .info p {
-    font-size: 1.8rem;
-    line-height: 4rem;
+    font-size: 1.6rem;
   }
 }

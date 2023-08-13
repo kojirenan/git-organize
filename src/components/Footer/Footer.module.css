@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 2.4rem;
+  padding: 1rem;
 }
 
 .logo img {
-  height: 3.6rem;
+  height: 2rem;
 }
 
 .link-git {
@@ -32,17 +32,24 @@
   align-self: center;
 }
 
-@media (min-width: 768px) {
+.icon {
+  font-size: 36px;
+}
+
+@media (min-width: 992px) {
   .footer {
     padding: 3rem;
   }
 
   .logo img {
-    height: 6rem;
+    height: 3.2rem;
   }
 
   .content {
-    padding: 0.8rem;
     font-size: 3rem;
+  }
+
+  .icon {
+    font-size: 40px;
   }
 }
