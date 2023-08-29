@@ -16,10 +16,36 @@
 
 .form h2 {
   font-size: 1.6rem;
+  margin-top: 1.6rem;
 }
 
 .form div {
   margin: 16px 0;
+}
+
+.showForm {
+  animation: showForm 300ms forwards;
+}
+
+.hideForm {
+  animation: hideForm 300ms forwards;
+}
+
+@keyframes showForm {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes hideForm {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
 }
 
 @media (min-width: 768px) {

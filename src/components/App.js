@@ -6,7 +6,6 @@ import useTeamList from 'hooks/useTeamList';
 import styles from './App.module.css';
 import { useState, useEffect } from 'react';
 import useHasUser from 'hooks/useHasUsers';
-import AddButton from './AddButton';
 import { MdMenu, MdMenuOpen } from 'react-icons/md';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,7 +15,9 @@ function App() {
   const hasUsers = useHasUser();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [renderForm, setRenderForm] = useState(true);
+  const [slideIn, setSlideIn] = useState(true);
 
+  //Observador de tamanho de tela
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -24,10 +25,12 @@ function App() {
 
     if (!hasUsers) {
       setRenderForm(true);
+      setSlideIn(true);
     } else if (windowWidth <= 767 && hasUsers) {
       setRenderForm(false);
     } else {
       setRenderForm(true);
+      setSlideIn(true);
     }
 
     window.addEventListener('resize', handleResize);
@@ -37,21 +40,28 @@ function App() {
     };
   }, [windowWidth, hasUsers]);
 
-  const teste = () => {
-    renderForm === false ? setRenderForm(true) : setRenderForm(false);
+  //Form deslizante para mobile
+  const showForm = () => {
+    if (renderForm === false) {
+      setRenderForm(true);
+      setSlideIn(true);
+    } else {
+      setSlideIn(false);
+      setTimeout(() => {
+        setRenderForm(false);
+      }, 300);
+    }
   };
 
   return (
     <>
-      <div className={styles.app} style={{ display: hasUsers ? 'grid' : 'flex', flexDirection: 'column' }}>
+      <div className={styles.app} style={{ display: hasUsers && windowWidth >= 767 ? 'grid' : 'flex', flexDirection: 'column' }}>
         <div className={styles.aside}>
           <Banner />
-          {renderForm && <Form />}
+          {renderForm && <Form slideIn={slideIn} />}
           {hasUsers && (
-            <div className={styles.btnMenu}>
-              <AddButton toggle={teste}>
-                {renderForm === false ? <MdMenu size={30} color="white" /> : <MdMenuOpen size={30} color="white" />}
-              </AddButton>
+            <div className={styles.btnMenu} onClick={showForm}>
+              {renderForm === false ? <MdMenu size={30} color="white" /> : <MdMenuOpen size={30} color="white" />}
             </div>
           )}
         </div>
@@ -67,8 +77,8 @@ function App() {
         </div>
       </div>
       <ToastContainer
-        position="top-right"
-        autoClose={4000}
+        position={windowWidth <= 767 ? 'bottom-center' : 'top-right'}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -76,7 +86,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme="colored"
         style={{ fontSize: '4.6rem' }}
       />
     </>

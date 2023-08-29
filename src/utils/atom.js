@@ -57,7 +57,7 @@ export const listUsers = atom({
       public_repos: 24,
       followers: 1,
       avatar_url: 'https://avatars.githubusercontent.com/u/112651032?v=4',
-      office: 'Dev. Júnior',
+      office: 'Desenvolvedor',
       team: 'Front-End',
     },
   ],

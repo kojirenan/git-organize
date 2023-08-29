@@ -1,6 +1,7 @@
 .app {
   height: 100vh;
   position: relative;
+  display: flex;
 }
 
 .footer {
@@ -10,12 +11,17 @@
 .btnMenu {
   position: fixed;
   left: 24px;
-  top: 0rem;
+  top: 1rem;
   z-index: 3;
 }
 
 .teams > :first-of-type {
   padding-top: 5.6rem;
+}
+
+.teams {
+  background-color: rgba(52, 53, 56, 0.5);
+  flex-grow: 1;
 }
 
 @media (min-width: 768px) {
@@ -39,7 +45,6 @@
     grid-area: teams;
     overflow-y: auto;
     height: 100%;
-    background-color: rgba(52, 53, 56, 1);
   }
 
   .teams > :first-of-type {
